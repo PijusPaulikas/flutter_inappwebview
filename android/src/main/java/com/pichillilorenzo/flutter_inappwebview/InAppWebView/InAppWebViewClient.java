@@ -694,6 +694,18 @@ public class InAppWebViewClient extends WebViewClient {
   @Override
   public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
     String url = request.getUrl().toString();
+
+    Map<String, Object> obj = new HashMap<>();
+    obj.put("method", request.getMethod());
+    obj.put("url", request.getUrl().toString());
+    try {
+      Util.invokeMethodAndWait(getChannel(), "shouldInterceptRequest", obj);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+      Log.e(LOG_TAG, e.getMessage());
+      return null;
+    }
+
     return shouldInterceptRequest(view, url);
   }
 

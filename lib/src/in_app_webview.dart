@@ -111,6 +111,10 @@ class InAppWebView extends StatefulWidget {
   final Future<CustomSchemeResponse> Function(
           InAppWebViewController controller, String scheme, String url)
       onLoadResourceCustomScheme;
+  
+  //Event fired on shouldInterceptRequest
+  final void Function(String method, String url)
+      shouldInterceptRequest;
 
   ///Event fired when the [InAppWebView] requests the host application to create a new window,
   ///for example when trying to open a link with `target="_blank"` or when `window.open()` is called by JavaScript side.
@@ -336,6 +340,7 @@ class InAppWebView extends StatefulWidget {
     this.onScrollChanged,
     this.onDownloadStart,
     this.onLoadResourceCustomScheme,
+    this.shouldInterceptRequest,
     this.onCreateWindow,
     this.onJsAlert,
     this.onJsConfirm,
@@ -566,6 +571,28 @@ class InAppWebViewController {
         if (_widget != null && _widget.onDownloadStart != null)
           _widget.onDownloadStart(this, url);
         else if (_inAppBrowser != null) _inAppBrowser.onDownloadStart(url);
+        break;
+      case "shouldInterceptRequest":
+        String method = call.arguments["method"];
+        String url = call.arguments["url"];
+        if (_widget != null && _widget.shouldInterceptRequest != null) {
+          try {
+              _widget.shouldInterceptRequest(method, url);
+           
+          } catch (error) {
+            print(error);
+            return null;
+          }
+        } else if (_inAppBrowser != null) {
+          try {
+            _inAppBrowser.shouldInterceptRequest(method, url);
+           
+          } catch (error) {
+            print(error);
+            return null;
+          }
+        }
+
         break;
       case "onLoadResourceCustomScheme":
         String scheme = call.arguments["scheme"];

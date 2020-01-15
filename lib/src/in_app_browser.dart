@@ -399,6 +399,9 @@ class InAppBrowser {
   // ignore: missing_return
   Future<CustomSchemeResponse> onLoadResourceCustomScheme(
       String scheme, String url) {}
+  
+  void shouldInterceptRequest(
+      String method, String url) {}
 
   ///Event fired when the [InAppBrowser] webview requests the host application to create a new window,
   ///for example when trying to open a link with `target="_blank"` or when `window.open()` is called by JavaScript side.
