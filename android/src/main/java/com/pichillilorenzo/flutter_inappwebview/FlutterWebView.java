@@ -389,6 +389,8 @@ public class FlutterWebView implements PlatformView, MethodCallHandler  {
           webView = null;
         }
       });
+      webView.getSettings().setBuiltInZoomControls(true);
+      webView.getSettings().setSupportZoom(true);
       webView.loadUrl("about:blank");
     }
   }

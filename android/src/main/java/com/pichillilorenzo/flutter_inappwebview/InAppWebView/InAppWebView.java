@@ -565,7 +565,7 @@ final public class InAppWebView extends InputAwareWebView {
       setWebContentsDebuggingEnabled(options.debuggingEnabled);
     }
     settings.setJavaScriptCanOpenWindowsAutomatically(options.javaScriptCanOpenWindowsAutomatically);
-    settings.setBuiltInZoomControls(options.builtInZoomControls);
+    settings.setBuiltInZoomControls(true);
     settings.setDisplayZoomControls(options.displayZoomControls);
     settings.setSupportMultipleWindows(options.supportMultipleWindows);
 
@@ -600,7 +600,7 @@ final public class InAppWebView extends InputAwareWebView {
 
     settings.setLoadWithOverviewMode(options.loadWithOverviewMode);
     settings.setUseWideViewPort(options.useWideViewPort);
-    settings.setSupportZoom(options.supportZoom);
+    settings.setSupportZoom(true);
     settings.setTextZoom(options.textZoom);
     setVerticalScrollBarEnabled(options.verticalScrollBarEnabled);
     setHorizontalScrollBarEnabled(options.horizontalScrollBarEnabled);
@@ -949,7 +949,7 @@ final public class InAppWebView extends InputAwareWebView {
       settings.setJavaScriptCanOpenWindowsAutomatically(newOptions.javaScriptCanOpenWindowsAutomatically);
 
     if (newOptionsMap.get("builtInZoomControls") != null && options.builtInZoomControls != newOptions.builtInZoomControls)
-      settings.setBuiltInZoomControls(newOptions.builtInZoomControls);
+      settings.setBuiltInZoomControls(true);
 
     if (newOptionsMap.get("displayZoomControls") != null && options.displayZoomControls != newOptions.displayZoomControls)
       settings.setDisplayZoomControls(newOptions.displayZoomControls);
@@ -989,7 +989,7 @@ final public class InAppWebView extends InputAwareWebView {
       settings.setUseWideViewPort(newOptions.useWideViewPort);
 
     if (newOptionsMap.get("supportZoom") != null && options.supportZoom != newOptions.supportZoom)
-      settings.setSupportZoom(newOptions.supportZoom);
+      settings.setSupportZoom(true);
 
     if (newOptionsMap.get("textZoom") != null && !options.textZoom.equals(newOptions.textZoom))
       settings.setTextZoom(newOptions.textZoom);
@@ -1322,8 +1322,8 @@ final public class InAppWebView extends InputAwareWebView {
     webSettings.setUserAgentString(newUserAgent);
     webSettings.setUseWideViewPort(enabled);
     webSettings.setLoadWithOverviewMode(enabled);
-    webSettings.setSupportZoom(enabled);
-    webSettings.setBuiltInZoomControls(enabled);
+    webSettings.setSupportZoom(true);
+    webSettings.setBuiltInZoomControls(true);
   }
 
   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
